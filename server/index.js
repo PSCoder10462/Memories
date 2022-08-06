@@ -2,13 +2,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
+
+dotenv.config();
+
 // init app for express features
 const app = express();
-
-// using express middleware: all postRoutes start with /posts
-app.use('/posts', postRoutes);
 
 /*
 	body parser: parses req.body to key: value pairs in a middleware
@@ -16,11 +17,12 @@ app.use('/posts', postRoutes);
 	- extended: false => parse to string/array
 	- extended: true  => parse to any type
 	- limit: limits req.body size
-	.json -> returns middlwware that will only parse JSON
+	.json -> returns middlware that will only parse JSON
 	.urlencoded -> returns middleware that will only parse urlencoded body
 */
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
 
 /*
 	cors: cross origin resource sharing
@@ -35,6 +37,11 @@ app.use(cors());
 // connection with mongoDB
 const PORT = process.env.PORT || 5500;
 
+// using express middleware: all postRoutes start with /posts
+app.use('/posts', postRoutes);
+
+// connection with mongoDB
+const PORT = process.env.PORT || 5500;
 /*
 	mongoose: ODM(object data modeling) library for mongoDB
 */
