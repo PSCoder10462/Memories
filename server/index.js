@@ -40,8 +40,6 @@ const PORT = process.env.PORT || 5500;
 // using express middleware: all postRoutes start with /posts
 app.use('/posts', postRoutes);
 
-// connection with mongoDB
-const PORT = process.env.PORT || 5500;
 /*
 	mongoose: ODM(object data modeling) library for mongoDB
 */
