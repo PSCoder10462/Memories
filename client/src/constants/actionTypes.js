@@ -8,3 +8,7 @@ export const LIKE = 'LIKE';
 // EDIT_ID ACTIONS:
 export const SET_ID = 'SET_ID';
 export const UNSET_ID = 'UNSET_ID';
+
+// AUTH ACTIONS:
+export const AUTH = 'AUTH';
+export const LOGOUT = 'LOGOUT';

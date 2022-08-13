@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ const PORT = process.env.PORT || 5500;
 
 // using express middleware: all postRoutes start with /posts
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 /*
 	mongoose: ODM(object data modeling) library for mongoDB

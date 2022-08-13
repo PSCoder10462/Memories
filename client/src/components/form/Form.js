@@ -11,8 +11,9 @@ const Form = () => {
 	const dispatch = useDispatch();
 	const editId = useSelector(state=>state.editId);
 	const posts = useSelector(state=>state.posts);
+	const user = useSelector(state=>state.auth);
 	const [postData, setPostData] = useState({
-		creator: '', message: '', selectedFile: '', tags: [], title: ''
+		message: '', selectedFile: '', tags: [], title: ''
 	});
 
 	useEffect(()=> {
@@ -25,15 +26,21 @@ const Form = () => {
 	const clear = () => {
 		if (editId) dispatch(unsetId());
 		setPostData({
-			creator: '', message: '', selectedFile: '', tags: [], title: ''
+			message: '', selectedFile: '', tags: [], title: ''
 		});
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (!editId) dispatch(createPost(postData));
+
+		if (postData.message.length <= 0 || postData.title.length <= 0) {
+			window.alert('Please fill in message and title');
+			return;
+		}
+
+		if (!editId) dispatch(createPost({...postData, creatorName: user.userProfile.name}));
 		else dispatch(updatePost(editId, postData));
-		clear();
+			clear();
 	};
 
 	const handleChange = e => {
@@ -42,6 +49,16 @@ const Form = () => {
 		else 
 			setPostData({ ...postData, [e.target.name]: e.target.value});
 	};
+
+	if (!user) {
+		return (
+			<Paper className={classes.paper}>
+				<Typography variant='h6' align='center'>
+					Please sign in to create and like memories!
+				</Typography>
+			</Paper>
+		);
+	}
 
 	return (
 		<Paper className={classes.paper}> 
@@ -55,14 +72,7 @@ const Form = () => {
 					{editId ? 'Editing' : 'Creating'} a Memory
 				</Typography>
 				<TextField
-					name='creator'
-					variant='outlined'
-					label='Creator'
-					fullWidth
-					value={postData.creator}
-					onChange={handleChange}
-				/>
-				<TextField
+					required
 					name='title'
 					variant='outlined'
 					label='Title'
@@ -71,6 +81,7 @@ const Form = () => {
 					onChange={handleChange}
 				/>
 				<TextField
+					required
 					name='message'
 					variant='outlined'
 					label='Message'
