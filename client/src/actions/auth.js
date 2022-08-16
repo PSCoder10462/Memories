@@ -9,7 +9,7 @@ export const signIn = (formData, navigate) => async (dispatch) => {
 		    type: AUTH,
 		    payload: data,
 		});
-		navigate('/');
+		navigate(-1);
 	} catch (error) {
 		console.log(error);
 	}
@@ -23,7 +23,7 @@ export const signUp = (formData, navigate) => async (dispatch) => {
 			 type: AUTH,
 			 payload: data,
 		 });
-		 navigate('/');
+		 navigate(-1);
 	} catch (error) {
 		console.log(error);
 	}

@@ -53,7 +53,7 @@ const Auth = () => {
 				type: AUTH, 
 				payload: { userProfile, token: jwt }
 			});
-			navigate('/');
+			navigate(-1);
 		} catch(error) {
 			console.log(error);
 		}

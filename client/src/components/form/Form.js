@@ -10,7 +10,7 @@ const Form = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const editId = useSelector(state=>state.editId);
-	const posts = useSelector(state=>state.posts);
+	const { posts } = useSelector(state=>state.posts);
 	const user = useSelector(state=>state.auth);
 	const [postData, setPostData] = useState({
 		message: '', selectedFile: '', tags: [], title: ''
@@ -52,7 +52,7 @@ const Form = () => {
 
 	if (!user) {
 		return (
-			<Paper className={classes.paper}>
+			<Paper className={classes.paper} elevation={6}>
 				<Typography variant='h6' align='center'>
 					Please sign in to create and like memories!
 				</Typography>
@@ -61,7 +61,7 @@ const Form = () => {
 	}
 
 	return (
-		<Paper className={classes.paper}> 
+		<Paper className={classes.paper} elevation={6}> 
 			<form 
 				autoComplete='off' 
 				noValidate
@@ -124,7 +124,7 @@ const Form = () => {
 					fullWidth
 					onClick={clear}
 				>
-					Clear
+					{ editId ? 'Cancel' : 'Clear' }
 				</Button>
 			</form>
 		</Paper>

@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 
 import { useEffect } from 'react';
 import useStyles from './styles.js';
-import memories from '../../images/memories.png';
+import memoriesLogo from '../../images/memoriesLogo.png';
+import memoriesText from '../../images/memoriesText.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { googleLogout } from '@react-oauth/google';
 import { LOGOUT } from '../../constants/actionTypes.js';
@@ -41,23 +42,20 @@ const Navbar = () => {
 			position='static' 
 			color='inherit'
 		>
-			<div className={classes.brandContainer}>
-				<Typography 
-					component={Link}
-					to='/'
-					className={classes.heading} 
-					variant='h2' 
-					align='center'
-				> 
-					Memories 
-				</Typography>
+			<Link to='/' className={classes.brandContainer}>
 				<img 
 					className={classes.image} 
-					src={memories} 
-					alt='memories' 
-					height='60'
+					src={memoriesText} 
+					alt='icon' 
+					height='45'
 				/>
-			</div>
+				<img 
+					className={classes.image} 
+					src={memoriesLogo} 
+					alt='memories' 
+					height='40'
+				/>
+			</Link>
 			<Toolbar className={classes.toolbar}>
 				{ user && user.userProfile ? (
 					<div className={classes.profile}>

@@ -1,26 +1,56 @@
 import { 
 	FETCH_ALL, 
+	FETCH_BY_SEARCH, 
 	CREATE, 
 	UPDATE, 
 	DELETE, 
-	LIKE 
+	LIKE,
+	FETCH_POST,
+	COMMENT,
 } from '../constants/actionTypes.js';
 
-const reducer = (state=[], action) => {
+const reducer = (state={loading: true, posts: [], isSearched: false}, action) => {
 	switch(action.type) {
 		case LIKE:
+		case COMMENT:
 		case UPDATE:
-			return state.map(e => (
-				e._id === action.payload._id
-				? action.payload
-				: e
-			));
+			return {
+				...state,
+				posts: state.posts.map(e => (
+					e._id === action.payload._id
+					? action.payload
+					: e
+				))
+			};
 		case DELETE:
-			return state.filter(e => (e._id !== action.payload));
+			return {
+				...state,
+				posts: state.posts.filter(e => (e._id !== action.payload))
+			};
 		case FETCH_ALL:
-			return action.payload;
+			return {
+				...state,
+				isSearched: false,
+				posts: action.payload.posts,
+				currentPage: Number(action.payload.currentPage),
+				totalPages: Number(action.payload.totalPages),
+			};
+		case FETCH_POST:
+			return {
+				...state,
+				post: action.payload,
+			};
+		case FETCH_BY_SEARCH:
+			return {
+				...state,
+				isSearched: true,
+				posts: action.payload
+			};
 		case CREATE: 
-			return [action.payload, ...state];
+			return {
+				...state,
+				posts: [action.payload, ...state.posts]
+			};
 		default: 
 			return state;
 	};

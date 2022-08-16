@@ -7,12 +7,12 @@ export default makeStyles((theme) => ({
     margin: '30px 0',
     display: 'flex',
     flexDirection: 'row',
-	justifyContent: 'space-between',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
-	  [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
-      },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
   },
   heading: {
     color: theme.palette.primary.main,
