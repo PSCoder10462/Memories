@@ -42,6 +42,10 @@ const PORT = process.env.PORT || 5500;
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
+app.get('/', (req, res) => {
+  res.send('memories');
+});
+
 /*
 	mongoose: ODM(object data modeling) library for mongoDB
 */

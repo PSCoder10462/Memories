@@ -12,6 +12,7 @@ export const signIn = (formData, navigate) => async (dispatch) => {
 		navigate(-1);
 	} catch (error) {
 		console.log(error);
+		window.alert('Failed to sign in');
 	}
 };
 
@@ -26,5 +27,6 @@ export const signUp = (formData, navigate) => async (dispatch) => {
 		 navigate(-1);
 	} catch (error) {
 		console.log(error);
+		window.alert('Failed to sign in');
 	}
 };

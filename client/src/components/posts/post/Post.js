@@ -14,7 +14,6 @@ import useStyles from './styles.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { setId } from '../../../actions/editId.js';
 import { deletePost, likePost } from '../../../actions/posts.js';
-import memories from '../../../images/memories.png';
 import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post }) => {
@@ -35,7 +34,9 @@ const Post = ({ post }) => {
 			>
 				<CardMedia 
 					className={classes.media} 
-					image={post.selectedFile?post.selectedFile : memories} 
+				image={post.selectedFile?post.selectedFile : 
+							'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'
+				}
 					title={post.title}
 				/>
 				<div className={classes.overlay}>
@@ -49,7 +50,7 @@ const Post = ({ post }) => {
 						variant='body2' 
 						color='textSecondary'
 					> 
-						{post.tags?.map(tag=>(`#${tag} `))}
+						{post.tags?.slice(0,5)?.map(tag=>(`#${tag} `))}
 					</Typography>
 				</div>
 				<Typography
@@ -57,15 +58,16 @@ const Post = ({ post }) => {
 					variant='h5'
 					gutterBottom
 				>
-					{post.title}
+					{post.title.substr(0, 30)}{post.title.length>30 && '...'}
 				</Typography>
 				<CardContent>
 					<Typography
 						variant='body2' 
 						color='textSecondary'
 						gutterBottom
+						style={{ wordWrap: 'break-word' }}
 					>
-						{post.message}
+						{post.message?.substr(0, 120)}{post?.message.length>120 && '...'} 
 					</Typography>
 				</CardContent>
 			</ButtonBase>

@@ -93,7 +93,6 @@ export const commentPost = async (req, res) => {
 		return res.status(404).send('No post with this id!');
 	try {
 		const post = await PostMessage.findById(_id);
-		console.log(post);
 		post.comments.push(comment);
 		const updatedPost =
 			await PostMessage.findByIdAndUpdate(_id, {...post}, {new: true});

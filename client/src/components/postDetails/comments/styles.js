@@ -4,6 +4,9 @@ export default makeStyles((theme) => ({
 	commentsOuterContainer: {
 		display: 'flex',
 		justifyContent: 'space-between',
+		[theme.breakpoints.down('md')]: {
+			flexDirection: 'column',
+		},
 	},
 	commentsInnerContainer: {
 		height: '200px',

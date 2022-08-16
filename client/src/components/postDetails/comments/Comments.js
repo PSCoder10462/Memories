@@ -4,14 +4,20 @@ import { TextField, Typography, Button } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { commentPost } from '../../../actions/posts.js';
 
-const Comments = ({ post }) => {
+const Comments = ({ postComments, postId }) => {
 	const classes = useStyles();
-	const [ comments, setComments ] = useState(post?.comments);
+	const [ comments, setComments ] = useState([]);
 	const [ comment, setComment ] = useState('');
 	const [ commented, setCommented ] = useState(false);
 	const user = useSelector(state=>state.auth);
 	const dispatch = useDispatch();
 	const commentsRef = useRef();
+
+	useEffect(()=> {
+		if (postComments) {
+			setComments(postComments);
+		}
+	}, [postComments]);
 
 	const scrollToBottom = () => {
 		commentsRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -20,7 +26,7 @@ const Comments = ({ post }) => {
 	const handleComment = async () => {
 		if (comment.trim()) {
 			const finalComment = `${user.userProfile.name}: ${comment}`;
-			const newComments = await dispatch(commentPost(finalComment, post._id));
+			const newComments = await dispatch(commentPost(finalComment, postId));
 			setComments(newComments);
 			setCommented(true);
 		}
@@ -30,7 +36,7 @@ const Comments = ({ post }) => {
 	useEffect(()=> {
 		if (commented)
 			scrollToBottom();
-	}, [comments]);
+	}, [commented, comments]);
 
 	return (
 		<div>
@@ -41,8 +47,7 @@ const Comments = ({ post }) => {
 					</Typography>
 					{ comments.map((c,i) => (
 						<Typography key={i} gutterBottom variant='subtitle1'>
-							<strong>{user?.userProfile.name}</strong>:
-							{c.slice(user?.userProfile.name.length+1)}
+							{c}
 						</Typography>
 					))}
 					<div ref={commentsRef}/>

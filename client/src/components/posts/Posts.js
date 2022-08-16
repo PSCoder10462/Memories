@@ -1,4 +1,4 @@
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, Typography, CircularProgress } from '@material-ui/core';
 import Post from './post/Post.js';
 import useStyles from './styles.js'
 
@@ -11,7 +11,7 @@ const Posts = () => {
 
 	if (!loading && !posts?.length) 
 		return (
-			<h1> No memories found! </h1>
+			<Typography variant='h4'> No memories found! </Typography>
 		);
 
 	return (

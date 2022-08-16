@@ -51,9 +51,7 @@ const PostDetails = () => {
 					<Typography variant="h6">Created by: {post.creatorName}</Typography>
 					<Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
 					<Divider style={{ margin: '20px 0' }} />
-					<Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-					<Divider style={{ margin: '20px 0' }} />
-					<Comments post={ post }/>
+					<Comments postComments={ post?.comments } postId={ post?._id}/>
 					<Divider style={{ margin: '20px 0' }} />
 				</div>
 				<div className={classes.imageSection}>
@@ -67,23 +65,36 @@ const PostDetails = () => {
 					/>
 				</div>
 			</div>
-			{recommendedPosts?.length && (
+			{recommendedPosts?.length ? (
 				<div className={classes.section}>
 					<Typography variant='h5' gutterBottom>
-						Yo might also like:
+						You might also like:
 					</Typography>
 					<Divider/>
 					<div className={classes.recommendedPosts}>
 						{recommendedPosts.map(({title, creatorName, _id, message, likes, selectedFile}) => (
-							<div 
-								style={{ margin: '20px', cursor: 'pointer' }}
+							<Paper 
+								elevation={6}
+								style={{ margin: '20px', cursor: 'pointer', padding: '10px', width: '250px' }}
 								onClick={()=>navigate(`/posts/${_id}`)}
 								key={_id}
 							>
-								<Typography variant='h6' gutterBottom> {title} </Typography>
-								<Typography variant='subtitle2' gutterBottom> {creatorName} </Typography>
-								<Typography variant='subtitle2' gutterBottom> {message} </Typography>
-								<Typography variant='subtitle1' gutterBottom> {likes.length} </Typography>
+								<Typography 
+									variant='h6' 
+									gutterBottom
+									style={{ wordWrap: 'break-word' }}
+								> 
+									{title.substr(0, 30)}{title.length > 30 && '...'} 
+								</Typography>
+								<Typography variant='subtitle2' gutterBottom> By: {creatorName} </Typography>
+								<Typography 
+									variant='subtitle2' 
+									gutterBottom 
+									style={{ wordWrap: 'break-word' }}
+								> 
+									Message: {message?.substr(0, 120)}{message.length>120 && '...'} 
+								</Typography>
+								<Typography variant='subtitle1' gutterBottom> Likes: {likes.length} </Typography>
 								<img 
 									src={
 										selectedFile || 
@@ -92,11 +103,11 @@ const PostDetails = () => {
 									alt={title} 
 									width='200px'
 								/>
-							</div>
+							</Paper>
 						))}
 					</div>
 				</div>
-			)}
+			): null}
 		</Paper>
 	);
 };
