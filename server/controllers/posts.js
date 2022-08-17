@@ -29,6 +29,8 @@ export const getPost = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
 	const { searchQuery, tags } = req.query;
+	if (tags) tags = tags.toLowerCase();
+	
 	try {
 		const title = new RegExp(searchQuery, 'i');
 		const posts = await PostMessage

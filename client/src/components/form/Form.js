@@ -38,9 +38,16 @@ const Form = () => {
 			return;
 		}
 
-		if (!editId) dispatch(createPost({...postData, creatorName: user.userProfile.name}));
-		else dispatch(updatePost(editId, postData));
-			clear();
+		let lowerCaseInputTags = [];
+		if (postData.tags.length) {
+			const inputTags = postData.tags.filter(tag => tag.trim().length);
+			lowerCaseInputTags = (inputTags? inputTags.map(tag=>tag.trim().toLowerCase()): []);
+			const post = postData;
+		}
+
+		if (!editId) dispatch(createPost({...postData, tags: lowerCaseInputTags, creatorName: user.userProfile.name}));
+		else dispatch(updatePost(editId, {...postData, tags: lowerCaseInputTags}));
+		clear();
 	};
 
 	const handleChange = e => {
