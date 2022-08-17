@@ -12,6 +12,7 @@ const Comments = ({ postComments, postId }) => {
 	const user = useSelector(state=>state.auth);
 	const dispatch = useDispatch();
 	const commentsRef = useRef();
+	const commentsTop = useRef();
 
 	useEffect(()=> {
 		if (postComments) {
@@ -20,7 +21,8 @@ const Comments = ({ postComments, postId }) => {
 	}, [postComments]);
 
 	const scrollToBottom = () => {
-		commentsRef.current.scrollIntoView({ behavior: 'smooth' });
+		commentsRef.current.scrollIntoView();
+		commentsTop.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
 	const handleComment = async () => {
@@ -40,11 +42,11 @@ const Comments = ({ postComments, postId }) => {
 
 	return (
 		<div>
+			<Typography gutterBottom variant='h6' ref={commentsTop}>
+				Comments
+			</Typography>
 			<div className={classes.commentsOuterContainer}>
 				<div className={classes.commentsInnerContainer}>
-					<Typography gutterBottom variant='h6'>
-						Comments
-					</Typography>
 					{ comments.map((c,i) => (
 						<Typography key={i} gutterBottom variant='subtitle1'>
 							{c}
@@ -53,7 +55,7 @@ const Comments = ({ postComments, postId }) => {
 					<div ref={commentsRef}/>
 				</div>
 				{ user && 
-					<div style={{ width: '70%' }}>
+					<div style={{ flex: '1' }}>
 						<Typography gutterBottom variant='h6'>
 							Write a Comment:
 						</Typography>

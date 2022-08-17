@@ -63,6 +63,7 @@ const Navbar = () => {
 							className={classes.purple}
 							alt={user.userProfile.name}
 							src={user.userProfile.picture}
+							style={{marginRight: '10px'}}
 						>
 							{user.userProfile.name.charAt(0)}
 						</Avatar>

@@ -4,13 +4,18 @@ export default makeStyles((theme) => ({
 	commentsOuterContainer: {
 		display: 'flex',
 		justifyContent: 'space-between',
-		[theme.breakpoints.down('md')]: {
+		width: '100%',
+		[theme.breakpoints.down('sm')]: {
 			flexDirection: 'column',
 		},
 	},
 	commentsInnerContainer: {
-		height: '200px',
+		wordWrap: 'word-break',
+		maxHeight: '500px',
 		overflowY: 'auto',
+		overflowX: 'hidden',
 		marginRight: '30px',
+		flex: '1',
+		minWidth: '70%',
 	},
 }));

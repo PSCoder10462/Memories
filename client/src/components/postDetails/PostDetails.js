@@ -45,14 +45,11 @@ const PostDetails = () => {
 		<Paper elevation={6} style={{ padding: '20px', borderRadius: '15px' }}>
 			<div className={classes.card}>
 				<div className={classes.section}>
-					<Typography variant="h3" component="h2">{post.title}</Typography>
+					<Typography variant="h3" component="h2" >{post.title}</Typography>
 					<Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
 					<Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
 					<Typography variant="h6">Created by: {post.creatorName}</Typography>
 					<Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
-					<Divider style={{ margin: '20px 0' }} />
-					<Comments postComments={ post?.comments } postId={ post?._id}/>
-					<Divider style={{ margin: '20px 0' }} />
 				</div>
 				<div className={classes.imageSection}>
 					<img 
@@ -65,6 +62,9 @@ const PostDetails = () => {
 					/>
 				</div>
 			</div>
+			<Divider style={{ margin: '20px 0' }} />
+			<Comments postComments={ post?.comments } postId={ post?._id}/>
+			<Divider style={{ margin: '20px 0' }} />
 			{recommendedPosts?.length ? (
 				<div className={classes.section}>
 					<Typography variant='h5' gutterBottom>
@@ -75,9 +75,9 @@ const PostDetails = () => {
 						{recommendedPosts.map(({title, creatorName, _id, message, likes, selectedFile}) => (
 							<Paper 
 								elevation={6}
-								style={{ margin: '20px', cursor: 'pointer', padding: '10px', width: '250px' }}
 								onClick={()=>navigate(`/posts/${_id}`)}
 								key={_id}
+								className={classes.recommendedPost}
 							>
 								<Typography 
 									variant='h6' 
