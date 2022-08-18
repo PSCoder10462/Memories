@@ -39,8 +39,8 @@ You can also open a PR if you are comfortable with the Main Tech Stack (mentione
 ## How to run on local environment
 1. Download the code.
 2. Create a `.env` file in both client and server directories and fill in the variables as mentioned in `.env.example` files in the respective directories.
-3. Use `npm install` or `npm i` in your terminal ( on both client and server side).
-4. Use `npm start` ( on both client and server side).
+3. Use `npm install` or `npm i` in your terminal (on both client and server side).
+4. Use `npm start` (on both client and server side).
 
 And you are good to go... 😊
 
