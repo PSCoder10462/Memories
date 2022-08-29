@@ -9,7 +9,7 @@ A completely responsive social media website where you can post/view/comment/lik
 PS: Please mainain dignity and keep posts/comments etc. respectful.
 
 ## Key features
-- Email/Password and Google OAuth2.0 (gsi) authenication.
+- Email/Password and Google OAuth2.0 (gsi) authentication.
 - CRUD (Create, Read, Update, Delete) operations on posts.
 - Pagination.
 - Like a post.
