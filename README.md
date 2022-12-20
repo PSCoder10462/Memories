@@ -49,3 +49,10 @@ A big thanks to:
 - JS Mastery (Guiding)
 - Heroku (Hosting server-side/back-end)
 - Netlify (Hosting cliend-side/front-end)
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](./LICENSE.md)**
+- Copyright 2022 © <a href="https://github.com/PSCoder10462" target="_blank">Parv Sharma</a>.
