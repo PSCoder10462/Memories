@@ -56,7 +56,7 @@ And you are good to go... 😊
 ## Credits:
 A big thanks to:
 - [JS Mastery](https://www.jsmastery.pro) (Guiding)
-- [Heroku](https://www.heroku.com) (Hosting server-side/back-end)
+- [Vercel](https://vercel.com/) (Hosting server-side/back-end)
 - [Netlify](https://www.netlify.com) (Hosting cliend-side/front-end)
 
 ## License
